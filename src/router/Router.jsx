@@ -9,12 +9,16 @@ import { Auth } from "../pages/Auth";
 import NotFound from "../pages/NotFound";
 import Unauthorized from "../pages/Unauthorized";
 import Unauthenticated from "../pages/Unauthenticated";
+import Dashboard from "../pages/Dashboard";
+import Drawer from "../components/Drawer";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootRouteLayout />}>
       <Route index element={<Auth />} />
       <Route path="auth" element={<Auth />} />
+      <Route path="dashboard" element={<Dashboard />} />
+      <Route path="drawer" element={<Drawer />} />
 
       <Route path="unauthenticated" element={<Unauthenticated />} />
       <Route path="unauthorized" element={<Unauthorized />} />

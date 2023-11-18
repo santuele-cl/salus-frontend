@@ -1,13 +1,4 @@
-import { Button } from "flowbite-react";
-import { toast } from "react-toastify";
-
 const Header = () => {
-  return (
-    <div className="max-w-screen-lg mx-auto">
-      <Button onClick={() => toast.success("Toast toast successfully!")}>
-        Toast
-      </Button>
-    </div>
-  );
+  return <div className="max-w-screen-lg mx-auto">Header</div>;
 };
 export default Header;
