@@ -11,6 +11,7 @@ import Unauthorized from "../pages/Unauthorized";
 import Unauthenticated from "../pages/Unauthenticated";
 import Dashboard from "../pages/Dashboard";
 import Drawer from "../components/Drawer";
+import Test from "../pages/Test";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,6 +20,8 @@ const router = createBrowserRouter(
       <Route path="auth" element={<Auth />} />
       <Route path="dashboard" element={<Dashboard />} />
       <Route path="drawer" element={<Drawer />} />
+
+      <Route path="test" element={<Test />} />
 
       <Route path="unauthenticated" element={<Unauthenticated />} />
       <Route path="unauthorized" element={<Unauthorized />} />

@@ -1,4 +1,8 @@
+import { useState } from "react";
+
 const MainPlaceholder = () => {
+  const [count, setCount] = useState(0);
+
   return (
     <main className="p-4 md:ml-64 h-auto pt-20">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
@@ -21,6 +25,10 @@ const MainPlaceholder = () => {
         <div className="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72" />
         <div className="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72" />
       </div>
+      <p>{count}</p>
+      <button onClick={() => setCount((prevCount) => prevCount + 1)}>
+        Increment
+      </button>
     </main>
   );
 };

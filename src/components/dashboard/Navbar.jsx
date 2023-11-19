@@ -1,8 +1,7 @@
 import HamburgerBtn from "./HamburgerBtn";
 import Logo from "./Logo";
 import NavbarProfile from "./NavbarProfile";
-import NavbarSearchBar from "./NavbarSearchBar";
-import NavbarSearchIcon from "./NavbarSearchIcon";
+// import NavbarSearchBar from "./NavbarSearchBar";
 
 const Navbar = () => {
   return (
