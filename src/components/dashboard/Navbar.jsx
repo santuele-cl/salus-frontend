@@ -1,5 +1,5 @@
 import HamburgerBtn from "./HamburgerBtn";
-import Logo from "./Logo";
+import Logo from "../Logo";
 import NavbarProfile from "./NavbarProfile";
 // import NavbarSearchBar from "./NavbarSearchBar";
 

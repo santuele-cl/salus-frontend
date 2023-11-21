@@ -1,19 +1,49 @@
 import { PiUserFill, PiLockKeyFill } from "react-icons/pi";
 import { Button, Label, TextInput } from "flowbite-react";
+// import { toast } from "react-toastify";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
+import { useForm } from "react-hook-form";
+import { useLoginMutation } from "../../features/auth/authApiSlice";
+import { useDispatch } from "react-redux";
+import { setAccessToken } from "../../features/auth/authSlice";
+
 const AuthForm = () => {
+  const navigate = useNavigate();
+  const { state } = useLocation();
+  const dispatch = useDispatch();
+
+  const [login] = useLoginMutation();
+
+  const { register, handleSubmit, reset } = useForm();
+
+  const onSubmit = async (data) => {
+    console.log(data);
+    try {
+      const { accessToken } = await login(data).unwrap();
+      dispatch(setAccessToken(accessToken));
+      reset();
+      navigate(`${state?.from ? state?.from : "/dashboard"}`);
+    } catch (error) {
+      toast.error(error?.data?.message);
+    }
+  };
+
   return (
-    <form className="flex max-w-md flex-col gap-4 mx-auto ">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex w-full flex-col gap-4 mx-auto "
+    >
       {/* # USERNAME */}
       <div>
         <div className="mb-2 block">
-          <Label htmlFor="email1" value="Username" />
+          <Label htmlFor="usernameId" value="Username" />
         </div>
         <TextInput
-          id="email1"
-          type="email"
-          placeholder="example@email.com"
+          {...register("username")}
+          id="usernameId"
+          placeholder="Type your username here."
           icon={PiUserFill}
           required
         />
@@ -21,18 +51,22 @@ const AuthForm = () => {
       {/* # PASSWORD */}
       <div>
         <div className="mb-2 block">
-          <Label htmlFor="password1" value="Password" />
+          <Label htmlFor="passwordId" value="Password" />
         </div>
         <TextInput
-          id="password1"
+          {...register("password")}
+          id="passwordId"
           type="password"
-          placeholder="********"
+          placeholder="Type your username here."
           icon={PiLockKeyFill}
           required
         />
       </div>
 
-      <Button type="submit" onClick={() => toast.success("Login btn clicked!")}>
+      <Button
+        type="submit"
+        // onClick={onToast}
+      >
         Login
       </Button>
     </form>

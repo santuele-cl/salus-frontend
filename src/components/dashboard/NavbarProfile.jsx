@@ -1,11 +1,40 @@
 // import NavbarSearchIcon from "./NavbarSearchIcon";
 
+import { useNavigate } from "react-router-dom";
+import { useLogoutMutation } from "../../features/auth/authApiSlice";
+import useGetUserData from "../../hooks/useGetUserData";
+import { PiSignOutBold } from "react-icons/pi";
+
 const NavbarProfile = () => {
+  const navigate = useNavigate();
+
+  const [logout] = useLogoutMutation();
+
+  const userData = useGetUserData();
+
+  const onLogout = async () => {
+    await logout();
+    navigate("/auth");
+  };
   return (
     <div className="flex items-center lg:order-2">
       {/* Search Icon */}
       {/* <NavbarSearchIcon /> */}
       {/* Notifications */}
+      <p>UserName: {userData.username}</p>
+      <button
+        type="button"
+        data-dropdown-toggle="notification-dropdown"
+        className="p-2 mr-1 text-gray-500 rounded-lg  hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+      >
+        <PiSignOutBold
+          color="gray"
+          size={24}
+          onClick={onLogout}
+          className="hover:fill-gray-900"
+        />
+      </button>
+
       <button
         type="button"
         data-dropdown-toggle="notification-dropdown"

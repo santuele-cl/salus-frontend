@@ -3,7 +3,8 @@ import { Outlet } from "react-router-dom";
 import { getAccessToken } from "./authSlice";
 import { useRefreshQuery } from "./authApiSlice";
 import { useEffect, useRef, useState } from "react";
-import LoadingSpinner from "../../components/LoadingSpinner";
+// import LoadingSpinner from "../../components/LoadingSpinner";
+import SpinnerWhole from "../../components/SpinnerWhole";
 
 const VerifyToken = () => {
   const strictModeHanlderRef = useRef(false);
@@ -36,7 +37,7 @@ const VerifyToken = () => {
   }, []);
 
   if (!isSuccess) {
-    return <LoadingSpinner />;
+    return <SpinnerWhole />;
   }
   return <Outlet />;
 };
