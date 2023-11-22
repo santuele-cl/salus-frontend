@@ -28,7 +28,9 @@ const router = createBrowserRouter(
         <Route element={<RequireAuth />}>
           <Route path="dashboard" element={<Dashboard />}>
             <Route path="users" element={<Users />} />
+
             <Route path="roles" element={<Roles />} />
+            <Route index element={<Roles />} />
           </Route>
         </Route>
 
