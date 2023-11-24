@@ -1,7 +1,8 @@
 import { Button } from "flowbite-react";
 import { PiUsersThreeFill, PiPlusBold } from "react-icons/pi";
-import UserAddModal from "./UserAddModal";
 import { useState } from "react";
+
+import UserAddModal from "./UserAddModal";
 
 const UsersTableHeader = () => {
   const [openAddUserModal, setOpenAddUserModal] = useState(false);
