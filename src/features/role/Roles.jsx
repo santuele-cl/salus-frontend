@@ -22,12 +22,14 @@ const Roles = () => {
     initFlowbite();
   });
 
+  console.log(error);
+
   let content;
 
   if (isFetching | isLoading) {
     content = <SpinnerWhole />;
   } else if (isError) {
-    content = <p>{error}</p>;
+    content = <p>{error?.data?.message}</p>;
   } else if (isSuccess && roles) {
     content = (
       <div className="relative overflow-x-auto ">

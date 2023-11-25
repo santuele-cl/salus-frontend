@@ -27,7 +27,7 @@ const Users = () => {
   if (isFetching | isLoading) {
     content = <SpinnerWhole />;
   } else if (isError) {
-    content = <p>{error}</p>;
+    content = <p>{error?.data?.message}</p>;
   } else if (isSuccess && users) {
     content = (
       <div className="relative overflow-x-auto ">
