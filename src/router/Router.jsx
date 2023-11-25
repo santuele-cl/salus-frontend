@@ -17,6 +17,7 @@ import VerifyToken from "../features/auth/VerifyToken";
 import RequireAuth from "../features/auth/RequireAuth";
 import Roles from "../features/role/Roles";
 import Users from "../features/user/Users";
+import User from "../features/user/User";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,6 +29,7 @@ const router = createBrowserRouter(
         <Route element={<RequireAuth />}>
           <Route path="dashboard" element={<Dashboard />}>
             <Route path="users" element={<Users />} />
+            <Route path="users/:userId" element={<User />} />
 
             <Route path="roles" element={<Roles />} />
             <Route index element={<Roles />} />

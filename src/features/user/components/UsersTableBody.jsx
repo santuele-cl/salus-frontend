@@ -1,4 +1,9 @@
+import { Button } from "flowbite-react";
+import { Link, useLocation } from "react-router-dom";
+
 const UsersTableBody = ({ users }) => {
+  const { pathname } = useLocation();
+
   const UserObjectPropertiesArr = Object.keys(users?.entities[users?.ids[0]]);
   const TableBodyColumnHeader = UserObjectPropertiesArr.map((key) => (
     <th scope="col" className="px-4 py-3" key={key}>
@@ -18,6 +23,9 @@ const UsersTableBody = ({ users }) => {
             : users.entities[id][key]}
         </td>
       ))}
+      <td className="px-4 py-3">
+        <Link to={`${pathname}/${id}`}>View</Link>
+      </td>
     </tr>
   ));
 
@@ -25,7 +33,12 @@ const UsersTableBody = ({ users }) => {
     <div className="overflow-x-auto">
       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-          <tr>{TableBodyColumnHeader}</tr>
+          <tr>
+            {TableBodyColumnHeader}
+            <th scope="col" className="px-4 py-3">
+              Actions
+            </th>
+          </tr>
         </thead>
         <tbody>{TableBodyRowData}</tbody>
       </table>

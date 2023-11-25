@@ -26,7 +26,7 @@ const Roles = () => {
 
   let content;
 
-  if (isFetching | isLoading) {
+  if (isFetching || isLoading) {
     content = <SpinnerWhole />;
   } else if (isError) {
     content = <p>{error?.data?.message}</p>;

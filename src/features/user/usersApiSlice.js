@@ -6,11 +6,24 @@ const usersAdapter = createEntityAdapter({});
 
 const initialState = usersAdapter.getInitialState();
 
+const USER_BASE_URL = "/users";
+
 export const usersApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
+    getUserById: builder.query({
+      query: ({ id }) => ({
+        url: `${USER_BASE_URL}/${id}`,
+        method: "GET",
+      }),
+      keepUnusedDataFor: 60 * 5,
+      transformResponse: (userData) => {
+        return userData;
+      },
+      providesTags: (_result, _error, arg) => [{ type: "User", id: arg.id }],
+    }),
     getUsers: builder.query({
       query: () => ({
-        url: "/users",
+        url: USER_BASE_URL,
         method: "GET",
       }),
       keepUnusedDataFor: 60 * 5,
@@ -25,7 +38,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
     }),
     addNewUser: builder.mutation({
       query: (userData) => ({
-        url: "/users",
+        url: USER_BASE_URL,
         method: "POST",
         body: { ...userData },
       }),
@@ -33,20 +46,24 @@ export const usersApiSlice = apiSlice.injectEndpoints({
     }),
     updateUser: builder.mutation({
       query: (updatedUserData) => ({
-        url: "/users",
+        url: USER_BASE_URL,
         method: "PATCH",
         body: { ...updatedUserData },
       }),
       invalidatesTags: (result, error, arg) => [{ type: "User", id: arg.id }],
     }),
     deleteUser: builder.mutation({
-      query: ({ id }) => ({ url: "/users", method: "DELETE", body: { id } }),
+      query: ({ id }) => ({
+        url: `${USER_BASE_URL}/${id}`,
+        method: "DELETE",
+      }),
       invalidatesTags: (result, error, arg) => [{ type: "User", id: arg.id }],
     }),
   }),
 });
 
 export const {
+  useGetUserByIdQuery,
   useGetUsersQuery,
   useAddNewUserMutation,
   useUpdateUserMutation,

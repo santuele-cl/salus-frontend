@@ -39,6 +39,7 @@ const UserAddModal = ({ openAddUserModal, setOpenAddUserModal }) => {
       toast.error(error?.data?.message);
     }
   };
+
   return (
     <>
       <Modal
