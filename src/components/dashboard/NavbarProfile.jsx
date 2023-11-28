@@ -18,14 +18,7 @@ const NavbarProfile = () => {
   };
 
   const { username, userId } = useGetUserData();
-  // const {
-  //   data: user,
-  //   isFetching,
-  //   isLoading,
-  //   isError,
-  //   isSuccess,
-  //   error,
-  // } = useGetUserByIdQuery({ id: userId });
+
 
   return (
     <div className="flex items-center lg:order-2">
