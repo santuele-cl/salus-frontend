@@ -18,6 +18,9 @@ import RequireAuth from "../features/auth/RequireAuth";
 import Roles from "../features/role/Roles";
 import Users from "../features/user/Users";
 import User from "../features/user/User";
+import Profile from "../pages/Profile";
+import RequireRole from "../features/auth/RequireRole";
+import Overview from "../pages/Overview";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,18 +31,19 @@ const router = createBrowserRouter(
 
         <Route element={<RequireAuth />}>
           <Route path="dashboard" element={<Dashboard />}>
-            <Route path="users" element={<Users />} />
-            <Route path="users/:userId" element={<User />} />
+            <Route index element={<Overview />} />
+            <Route path="overview" element={<Overview />} />
 
-            <Route path="roles" element={<Roles />} />
-            <Route index element={<Roles />} />
+            <Route element={<RequireRole allowedRoles={["admin"]} />}>
+              <Route path="users" element={<Users />} />
+              <Route path="users/:userId" element={<User />} />
+
+              <Route path="roles" element={<Roles />} />
+            </Route>
           </Route>
         </Route>
 
         <Route path="drawer" element={<Drawer />} />
-
-        <Route path="roles" element={<Drawer />} />
-        <Route path="roles" element={<Drawer />} />
 
         <Route path="test" element={<Test />} />
 

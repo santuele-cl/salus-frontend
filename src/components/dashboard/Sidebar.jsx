@@ -2,9 +2,10 @@ import {
   PiUsersThreeFill,
   PiChartPieSliceFill,
   PiLockKeyOpenFill,
-  PiCaretDownBold,
 } from "react-icons/pi";
 import { Link } from "react-router-dom";
+
+// const sidebarLinks = [{link: "]
 
 const Sidebar = () => {
   return (
@@ -45,13 +46,13 @@ const Sidebar = () => {
         <ul className="space-y-2">
           {/* OVERVIEW */}
           <li>
-            <a
-              href="#"
+            <Link
+              to="/dashboard/overview"
               className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
               <PiChartPieSliceFill color="gray" size={24} />
               <span className="ml-3">Overview</span>
-            </a>
+            </Link>
           </li>
           {/* USERS */}
           <li>
