@@ -21,6 +21,9 @@ import User from "../features/user/User";
 import Profile from "../pages/Profile";
 import RequireRole from "../features/auth/RequireRole";
 import Overview from "../pages/Overview";
+import Patients from "../features/patients/Patients";
+import Appointments from "../features/appointment/Appointments";
+import Records from "../features/record/Records";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -40,6 +43,11 @@ const router = createBrowserRouter(
 
               <Route path="roles" element={<Roles />} />
             </Route>
+            {/* PROTOTYPE */}
+            <Route path="patients" element={<Patients />} />
+            <Route path="appointments" element={<Appointments />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="records" element={<Records />} />
           </Route>
         </Route>
 
