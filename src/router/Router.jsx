@@ -24,6 +24,8 @@ import Overview from "../pages/Overview";
 import Patients from "../features/patients/Patients";
 import Appointments from "../features/appointment/Appointments";
 import Records from "../features/record/Records";
+import Stepper from "../test/Stepper";
+import Onboard from "../pages/onboard/Onboard";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -53,7 +55,8 @@ const router = createBrowserRouter(
 
         <Route path="drawer" element={<Drawer />} />
 
-        <Route path="test" element={<Test />} />
+        <Route path="test" element={<Onboard />} />
+        <Route path="onboard" element={<Onboard />} />
 
         <Route path="unauthenticated" element={<Unauthenticated />} />
         <Route path="unauthorized" element={<Unauthorized />} />
