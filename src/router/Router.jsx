@@ -24,8 +24,9 @@ import Overview from "../pages/Overview";
 import Patients from "../features/patients/Patients";
 import Appointments from "../features/appointment/Appointments";
 import Records from "../features/record/Records";
-import Stepper from "../test/Stepper";
+// import Stepper from "../test/Stepper";
 import Onboard from "../pages/onboard/Onboard";
+import ContentManagement from "../features/cms/ContentManagement";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -45,6 +46,8 @@ const router = createBrowserRouter(
 
               <Route path="roles" element={<Roles />} />
             </Route>
+            <Route path="content-management" element={<ContentManagement />} />
+
             {/* PROTOTYPE */}
             <Route path="patients" element={<Patients />} />
             <Route path="appointments" element={<Appointments />} />

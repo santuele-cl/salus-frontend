@@ -58,20 +58,20 @@ export const {
   useDeleteRoleMutation,
 } = rolesApiSlice;
 
-// returns the query object result
-export const selectRolesResult = rolesApiSlice.endpoints.getRoles.select();
+// // returns the query object result
+// export const selectRolesResult = rolesApiSlice.endpoints.getRoles.select();
 
-// creates memoized selector
-const selectRolesData = createSelector(
-  selectRolesResult,
-  (rolesResult) => rolesResult.data // normalized stated object with ids and entities
-);
+// // creates memoized selector
+// const selectRolesData = createSelector(
+//   selectRolesResult,
+//   (rolesResult) => rolesResult.data // normalized stated object with ids and entities
+// );
 
-export const {
-  selectAll: selectAllRoles,
-  selectById: selectRoleById,
-  selectIds: selectRoleIds,
-  //   Pass in a selector that returns the user slice of state
-} = rolesAdapter.getSelectors(
-  (state) => selectRolesData(state) ?? initialState
-);
+// export const {
+//   selectAll: selectAllRoles,
+//   selectById: selectRoleById,
+//   selectIds: selectRoleIds,
+//   //   Pass in a selector that returns the user slice of state
+// } = rolesAdapter.getSelectors(
+//   (state) => selectRolesData(state) ?? initialState
+// );

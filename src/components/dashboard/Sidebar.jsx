@@ -44,14 +44,14 @@ const Sidebar = () => {
           </div>
         </form>
         <ul className="space-y-2">
-          {/* OVERVIEW */}
+          {/* CMS */}
           <li>
             <Link
-              to="/dashboard/overview"
+              to="/dashboard/content-management"
               className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
-              <PiChartPieSliceFill color="gray" size={24} />
-              <span className="ml-3">Overview</span>
+              <PiUsersThreeFill color="gray" size={24} />
+              <span className="flex-1 ml-3 whitespace-nowrap">Content</span>
             </Link>
           </li>
           {/* USERS */}
