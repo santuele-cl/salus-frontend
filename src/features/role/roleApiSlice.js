@@ -2,7 +2,9 @@ import { createSelector, createEntityAdapter } from "@reduxjs/toolkit";
 
 import { apiSlice } from "../../app/api/apiSlice";
 
-const rolesAdapter = createEntityAdapter({});
+const rolesAdapter = createEntityAdapter({
+  selectId: (e) => e.id,
+});
 
 const initialState = rolesAdapter.getInitialState();
 
@@ -17,6 +19,7 @@ export const rolesApiSlice = apiSlice.injectEndpoints({
       }),
       keepUnusedDataFor: 60 * 5,
       transformResponse: (responseData) => {
+        console.log(responseData);
         return rolesAdapter.setAll(initialState, responseData);
       },
       providesTags: (result) => [

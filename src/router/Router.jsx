@@ -26,45 +26,44 @@ import Appointments from "../features/appointment/Appointments";
 import Records from "../features/record/Records";
 // import Stepper from "../test/Stepper";
 import Onboard from "../pages/onboard/Onboard";
-import ContentManagement from "../features/cms/ContentManagement";
+import ContentManagement from "../features/config/ContentManagement";
+import Initialize from "../features/config/Initialize";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route element={<VerifyToken />}>
-      <Route path="/" element={<RootRouteLayout />}>
-        <Route index element={<Auth />} />
-        <Route path="auth" element={<Auth />} />
-
-        <Route element={<RequireAuth />}>
-          <Route path="dashboard" element={<Dashboard />}>
-            <Route index element={<Overview />} />
-            <Route path="overview" element={<Overview />} />
-
-            <Route element={<RequireRole allowedRoles={["admin"]} />}>
-              <Route path="users" element={<Users />} />
-              <Route path="users/:userId" element={<User />} />
-
-              <Route path="roles" element={<Roles />} />
+    <Route element={<Initialize />}>
+      <Route element={<VerifyToken />}>
+        <Route path="/" element={<RootRouteLayout />}>
+          <Route index element={<Auth />} />
+          <Route path="auth" element={<Auth />} />
+          <Route element={<RequireAuth />}>
+            <Route path="dashboard" element={<Dashboard />}>
+              <Route index element={<Overview />} />
+              <Route path="overview" element={<Overview />} />
+              <Route element={<RequireRole allowedRoles={["admin"]} />}>
+                <Route path="users" element={<Users />} />
+                <Route path="users/:userId" element={<User />} />
+                <Route path="roles" element={<Roles />} />
+              </Route>
+              <Route
+                path="content-management"
+                element={<ContentManagement />}
+              />
+              {/* PROTOTYPE */}
+              <Route path="patients" element={<Patients />} />
+              <Route path="appointments" element={<Appointments />} />
+              <Route path="profile" element={<Profile />} />
+              <Route path="records" element={<Records />} />
             </Route>
-            <Route path="content-management" element={<ContentManagement />} />
-
-            {/* PROTOTYPE */}
-            <Route path="patients" element={<Patients />} />
-            <Route path="appointments" element={<Appointments />} />
-            <Route path="profile" element={<Profile />} />
-            <Route path="records" element={<Records />} />
           </Route>
+          <Route path="drawer" element={<Drawer />} />
+          <Route path="test" element={<Onboard />} />
+          <Route path="onboard" element={<Onboard />} />
+          <Route path="unauthenticated" element={<Unauthenticated />} />
+          <Route path="unauthorized" element={<Unauthorized />} />
+          <Route path="/404" element={<NotFound />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
-
-        <Route path="drawer" element={<Drawer />} />
-
-        <Route path="test" element={<Onboard />} />
-        <Route path="onboard" element={<Onboard />} />
-
-        <Route path="unauthenticated" element={<Unauthenticated />} />
-        <Route path="unauthorized" element={<Unauthorized />} />
-        <Route path="/404" element={<NotFound />} />
-        <Route path="*" element={<NotFound />} />
       </Route>
     </Route>
   )

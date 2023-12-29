@@ -1,34 +1,31 @@
-import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
-import { getAccessToken } from "./authSlice";
-import { useRefreshQuery } from "./authApiSlice";
-import { useEffect, useRef, useState } from "react";
-// import LoadingSpinner from "../../components/LoadingSpinner";
 import SpinnerWhole from "../../components/SpinnerWhole";
+import { getConfigurationData, setConfig } from "./configurationSlice";
+import { useGetConfigurationQuery } from "./configurationApiSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useRef, useState } from "react";
 
-const VerifyToken = () => {
+const Initialize = () => {
+  const { refetch } = useGetConfigurationQuery();
+  const { config } = useSelector(getConfigurationData);
   const strictModeHanlderRef = useRef(false);
   const [isSuccess, setIsSuccess] = useState(false);
-
-  const { refetch: refresh } = useRefreshQuery();
-  const accessToken = useSelector(getAccessToken);
 
   useEffect(() => {
     if (
       strictModeHanlderRef.current === true ||
       process.env.NODE_ENV !== "development"
     ) {
-      const getNewToken = async () => {
+      const getConfig = async () => {
         try {
-          // console.log("getNewToken called");
-          await refresh();
+          await refetch();
           setIsSuccess(true);
         } catch (error) {
           console.log(error);
         }
       };
 
-      if (!accessToken) getNewToken();
+      if (!config) getConfig();
     }
 
     return () => {
@@ -41,5 +38,4 @@ const VerifyToken = () => {
   }
   return <Outlet />;
 };
-
-export default VerifyToken;
+export default Initialize;
