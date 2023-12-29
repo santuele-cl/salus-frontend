@@ -26,7 +26,7 @@ import Appointments from "../features/appointment/Appointments";
 import Records from "../features/record/Records";
 // import Stepper from "../test/Stepper";
 import Onboard from "../pages/onboard/Onboard";
-import ContentManagement from "../features/config/ContentManagement";
+import Configuration from "../features/config/Configuration";
 import Initialize from "../features/config/Initialize";
 
 const router = createBrowserRouter(
@@ -38,17 +38,14 @@ const router = createBrowserRouter(
           <Route path="auth" element={<Auth />} />
           <Route element={<RequireAuth />}>
             <Route path="dashboard" element={<Dashboard />}>
-              <Route index element={<Overview />} />
-              <Route path="overview" element={<Overview />} />
+              <Route index element={<Configuration />} />
+              <Route path="config" element={<Configuration />} />
               <Route element={<RequireRole allowedRoles={["admin"]} />}>
                 <Route path="users" element={<Users />} />
                 <Route path="users/:userId" element={<User />} />
                 <Route path="roles" element={<Roles />} />
               </Route>
-              <Route
-                path="content-management"
-                element={<ContentManagement />}
-              />
+              <Route path="config" element={<Configuration />} />
               {/* PROTOTYPE */}
               <Route path="patients" element={<Patients />} />
               <Route path="appointments" element={<Appointments />} />

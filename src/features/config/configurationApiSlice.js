@@ -19,7 +19,6 @@ export const configurationApiSlice = apiSlice.injectEndpoints({
       onQueryStarted: async (arg, { dispatch, queryFulfilled }) => {
         try {
           const { data } = await queryFulfilled;
-          console.log(data);
           dispatch(setConfig(data));
         } catch (error) {
           // console.log(error);
@@ -30,7 +29,7 @@ export const configurationApiSlice = apiSlice.injectEndpoints({
       //   // return configAdapter.setAll(initialState, responseData);
       //   return responseData;
       // },
-      // providesTags: () => [{ type: "Configuration" }],
+      providesTags: () => [{ type: "Configuration" }],
     }),
 
     addConfiguration: builder.mutation({
@@ -43,7 +42,7 @@ export const configurationApiSlice = apiSlice.injectEndpoints({
     }),
     updateConfiguration: builder.mutation({
       query: (updatedConfig) => ({
-        url: ENDPOINT_BASE_URL,
+        url: `${ENDPOINT_BASE_URL}/C58923F`,
         method: "PATCH",
         body: { ...updatedConfig },
       }),
