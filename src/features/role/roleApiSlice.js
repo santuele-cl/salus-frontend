@@ -19,7 +19,6 @@ export const rolesApiSlice = apiSlice.injectEndpoints({
       }),
       keepUnusedDataFor: 60 * 5,
       transformResponse: (responseData) => {
-        console.log(responseData);
         return rolesAdapter.setAll(initialState, responseData);
       },
       providesTags: (result) => [
