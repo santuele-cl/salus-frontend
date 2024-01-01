@@ -27,7 +27,7 @@ const PatientTest = () => {
     }
   };
   return (
-    <div>
+    <div className="max-w-screen-xl mx-auto">
       <div className="flex flex-col md:flex-row gap-8 p-4">
         <div className=" w-full md:w-2/6 flex flex-col gap-4">
           <div className="flex gap-2 rounded-md border-2 border-gray-400 p-2">

@@ -1,20 +1,19 @@
 import { TextInput, Label } from "flowbite-react";
-import VisitForm from "../../visit/VisitForm";
-
-const excludedFields = ["id", "patientChardId", "updatedAt"];
+import EvaluationForm from "./EvaluationForm";
+import VitalsForm from "./VitalsForm";
+import EvaluationFormRO from "./EvaluationFormRO";
+import VitalsFormRO from "./VitalsFormRO";
 
 const visitFields2 = [
   { fieldName: "Chief Complaint", value: "chiefComplaint" },
-  { fieldName: "HPI", value: "accompaniedBy" },
-  { fieldName: "Accompanied By", value: "hpi" },
+  { fieldName: "HPI", value: "hpi" },
+  { fieldName: "Accompanied By", value: "accompaniedBy" },
   { fieldName: "Date of Visit", value: "createdAt" },
   { fieldName: "Service Dept.", value: "serviceDepartment" },
-  //   { fieldName: "Vitals", value: "" },
 ];
 
 const Visit = ({ visitData }) => {
-  const visitFields = Object.keys(visitData);
-
+  console.log(visitData);
   return (
     <div>
       <div className="rounded-md border border-gray-400 p-4 flex flex-col gap-2">
@@ -50,10 +49,18 @@ const Visit = ({ visitData }) => {
           );
         })}
         <div>
-          <h2 className="uppercase font-semibold">Vitals</h2>
+          {!visitData["vitals"] ? (
+            <VitalsForm visitId={visitData["id"]} />
+          ) : (
+            <VitalsFormRO vitalsData={visitData["vitals"]} />
+          )}
         </div>
         <div>
-          <h2 className="uppercase font-semibold">Evaluation</h2>
+          {!visitData["evaluation"] ? (
+            <EvaluationForm visitId={visitData["id"]} />
+          ) : (
+            <EvaluationFormRO evaluationData={visitData["evaluation"]} />
+          )}
         </div>
       </div>
       {/* <pre className="text-lg">{JSON.stringify(visitData, null, 8)}</pre> */}

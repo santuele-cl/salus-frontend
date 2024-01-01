@@ -20,12 +20,6 @@ const PersonalInfoFields = [
 const AccInfoFields = [
   { fieldName: "Username", placeholder: "", id: "username" },
   { fieldName: "Password", placeholder: "", id: "password", type: "password" },
-  {
-    fieldName: "Confirm Password",
-    placeholder: "",
-    id: "password_confirmation",
-    type: "password",
-  },
 ];
 
 const schema = yup.object().shape({
@@ -37,10 +31,7 @@ const schema = yup.object().shape({
     .string()
     .required("Password is required")
     .min(8, "Min. 8 characters"),
-  password_confirmation: yup
-    .string()
-    .required("Password confirmation is required")
-    .oneOf([yup.ref("password"), null], "Passwords do not match."),
+
   fname: yup
     .string()
     .required("First name is required.")
@@ -83,7 +74,6 @@ const UserNewAddForm = () => {
   const onSubmit = async ({
     username,
     password,
-    password_confirmation,
     roleId,
     bdate,
     ...therest

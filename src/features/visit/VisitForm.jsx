@@ -4,8 +4,6 @@ import { toast } from "react-toastify";
 import { useAddVisitMutation } from "./visitApiSlice";
 import { Button, Label, Select, TextInput } from "flowbite-react";
 import { useForm } from "react-hook-form";
-import VitalsForm from "../patients/components/VitalsForm";
-import EvaluationForm from "../patients/components/EvaluationForm";
 
 const schema = yup.object().shape({
   accompaniedBy: yup.string(),
@@ -66,14 +64,14 @@ const VisitForm = ({ patientChartId }) => {
   };
   return (
     <div>
-      <div className="rounded-md border border-gray-400 p-4 ">
+      <div className="rounded-md border border-gray-400 p-4 mb-2">
         <form
           onSubmit={(e) => e.preventDefault()}
           className="mb-2 flex flex-col gap-2"
         >
           <div className="flex gap-2 items-center justify-between">
             <h2 className="font-semibold uppercase text-green-600">
-              New Visit Form
+              New Visit
             </h2>
             <div className="flex flex-col sm:flex-row gap-4 ">
               <Button className="flex-grow" onClick={handleSubmit(onSubmit)}>
@@ -125,17 +123,6 @@ const VisitForm = ({ patientChartId }) => {
             );
           })}
         </form>
-
-        <div>
-          <h2 className="uppercase font-semibold">Vitals</h2>
-          <hr />
-          <VitalsForm />
-        </div>
-        <div>
-          <h2 className="uppercase font-semibold">Evaluation</h2>
-          <EvaluationForm />
-          <hr />
-        </div>
       </div>
     </div>
   );
