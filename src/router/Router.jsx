@@ -28,6 +28,7 @@ import Records from "../features/record/Records";
 import Onboard from "../pages/onboard/Onboard";
 import Configuration from "../features/config/Configuration";
 import Initialize from "../features/config/Initialize";
+import PatientTest from "../features/patients/PatientTest";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -53,6 +54,8 @@ const router = createBrowserRouter(
               <Route path="records" element={<Records />} />
             </Route>
           </Route>
+          <Route path="patienttest" element={<PatientTest />}></Route>
+
           <Route path="drawer" element={<Drawer />} />
           <Route path="test" element={<Onboard />} />
           <Route path="onboard" element={<Onboard />} />
