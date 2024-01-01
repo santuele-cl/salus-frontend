@@ -24,7 +24,12 @@ const Visit = ({ visitData }) => {
             value="VISIT ID"
             className="bg-green-400 p-2 w-1/4 rounded-md"
           />
-          <TextInput id="id" value={visitData["id"]} className="w-full" />
+          <TextInput
+            id="id"
+            readOnly
+            value={visitData["id"]}
+            className="w-full"
+          />
         </div>
 
         {visitFields2.map(({ fieldName, value }) => {
