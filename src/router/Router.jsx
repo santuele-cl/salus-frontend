@@ -11,7 +11,6 @@ import Unauthorized from "../pages/Unauthorized";
 import Unauthenticated from "../pages/Unauthenticated";
 import Dashboard from "../pages/Dashboard";
 import Drawer from "../components/Drawer";
-import Test from "../pages/Test";
 
 import VerifyToken from "../features/auth/VerifyToken";
 import RequireAuth from "../features/auth/RequireAuth";
@@ -20,7 +19,6 @@ import Users from "../features/user/Users";
 import User from "../features/user/User";
 import Profile from "../pages/Profile";
 import RequireRole from "../features/auth/RequireRole";
-import Overview from "../pages/Overview";
 import Patients from "../features/patients/Patients";
 import Appointments from "../features/appointment/Appointments";
 import Records from "../features/record/Records";
@@ -28,7 +26,7 @@ import Records from "../features/record/Records";
 import Onboard from "../pages/onboard/Onboard";
 import Configuration from "../features/config/Configuration";
 import Initialize from "../features/config/Initialize";
-import PatientTest from "../features/patients/PatientTest";
+import PatientOnboard from "../features/patients/PatientOnboard";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -41,7 +39,7 @@ const router = createBrowserRouter(
             <Route path="dashboard" element={<Dashboard />}>
               <Route index element={<Configuration />} />
               <Route path="config" element={<Configuration />} />
-              <Route element={<RequireRole allowedRoles={["admin"]} />}>
+              <Route element={<RequireRole allowedRoles={["ADMIN"]} />}>
                 <Route path="users" element={<Users />} />
                 <Route path="users/:userId" element={<User />} />
                 <Route path="roles" element={<Roles />} />
@@ -53,8 +51,12 @@ const router = createBrowserRouter(
               <Route path="profile" element={<Profile />} />
               <Route path="records" element={<Records />} />
             </Route>
+            <Route
+              element={<RequireRole allowedRoles={["NURSE", "PHYSICIAN"]} />}
+            >
+              <Route path="patient" element={<PatientOnboard />}></Route>
+            </Route>
           </Route>
-          <Route path="patienttest" element={<PatientTest />}></Route>
 
           <Route path="drawer" element={<Drawer />} />
           <Route path="test" element={<Onboard />} />

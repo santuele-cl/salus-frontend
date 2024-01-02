@@ -5,7 +5,7 @@ import { useState } from "react";
 const EvaluationFormRO = ({ evaluationData }) => {
   const evaluationFields = Object.keys(evaluationData);
 
-  const [setshowVitals, setSetshowVitals] = useState(false);
+  const [setshowVitals, setSetshowVitals] = useState(true);
 
   return (
     <div>

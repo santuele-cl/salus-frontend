@@ -21,7 +21,7 @@ export const configurationApiSlice = apiSlice.injectEndpoints({
           const { data } = await queryFulfilled;
           dispatch(setConfig(data));
         } catch (error) {
-          // console.log(error);
+          console.log(error);
         }
       },
       // transformResponse: (responseData) => {

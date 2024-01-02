@@ -43,7 +43,7 @@ export const visitApiSlice = apiSlice.injectEndpoints({
         method: "POST",
         body: { patientChartId, visitData },
       }),
-      invalidatesTags: [{ type: "Visit", id: "LIST" }],
+      invalidatesTags: [{ type: "Visits", id: "LIST" }],
     }),
     updateVisit: builder.mutation({
       query: (updatedVisitData) => ({

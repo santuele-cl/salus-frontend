@@ -5,7 +5,7 @@ import { PiCaretDownFill } from "react-icons/pi";
 const VitalsFormRO = ({ vitalsData }) => {
   const vitalsFields = Object.keys(vitalsData);
 
-  const [setshowVitals, setSetshowVitals] = useState(false);
+  const [setshowVitals, setSetshowVitals] = useState(true);
 
   return (
     <div>

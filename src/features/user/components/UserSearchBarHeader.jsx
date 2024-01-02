@@ -5,21 +5,32 @@ import {
   PiUsersThreeFill,
 } from "react-icons/pi";
 import SpinnerWhole from "../../../components/SpinnerWhole";
-import { useGetUserByIdQuery } from "../usersApiSlice";
+import { useGetUserByIdQuery, useLazyGetUserByIdQuery } from "../usersApiSlice";
 import { useState } from "react";
 import UserSearchContent from "./UserSearchContent";
 
 const UserSearchBarHeader = () => {
   const [userId, setUserId] = useState(null);
 
-  const {
-    data: user,
-    isFetching,
-    isLoading,
-    isError,
-    isSuccess,
-    error,
-  } = useGetUserByIdQuery({ id: userId });
+  // const [
+  //   trigger,
+  //   { data: patient, isSuccess, isLoading, isFetching, isError, error },
+  // ] = useLazyGetPatientByIdQuery();
+
+  // const onPatientSearch = async () => {
+  //   if (patientId) {
+  //     try {
+  //       await trigger({ id: patientId }).unwrap();
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   }
+  // };
+
+  const [
+    trigger,
+    { data: user, isSuccess, isLoading, isFetching, isError, error },
+  ] = useLazyGetUserByIdQuery();
 
   let content;
 
@@ -30,6 +41,16 @@ const UserSearchBarHeader = () => {
   } else if (isSuccess && user) {
     content = <UserSearchContent user={user} />;
   }
+
+  const onUserSearch = async () => {
+    if (userId) {
+      try {
+        await trigger({ id: userId }).unwrap();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
 
   return (
     <div className="p-4 flex flex-col gap-4 ">
@@ -43,10 +64,10 @@ const UserSearchBarHeader = () => {
             onChange={(e) => setUserId(e.target.value)}
             required
           />
-          {/* <Button color="success">
+          <Button color="success" onClick={onUserSearch}>
             <PiMagnifyingGlassBold />
             <span className="ml-2">Search User</span>
-          </Button> */}
+          </Button>
         </div>
       </div>
       <hr />
