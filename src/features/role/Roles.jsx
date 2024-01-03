@@ -22,8 +22,6 @@ const Roles = () => {
     initFlowbite();
   });
 
-  console.log(error);
-
   let content;
 
   if (isFetching || isLoading) {

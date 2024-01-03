@@ -2,8 +2,12 @@ import { Button } from "flowbite-react";
 import RoleDeleteModal from "./RoleDeleteModal";
 import { useState } from "react";
 import { useUpdateRoleMutation } from "../roleApiSlice";
+import { format, parseISO } from "date-fns";
 
 const RoleTableBody = ({ roles }) => {
+  console.log(roles);
+  console.log(Object.keys(roles.entities[roles?.ids[0]]));
+
   const [deleteId, setDeleteId] = useState(null);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
@@ -26,9 +30,9 @@ const RoleTableBody = ({ roles }) => {
                 {key}
               </th>
             ))}
-            <th scope="col" className="px-4 py-3">
+            {/* <th scope="col" className="px-4 py-3">
               Action
-            </th>
+            </th> */}
           </tr>
         </thead>
         <tbody>
@@ -44,22 +48,12 @@ const RoleTableBody = ({ roles }) => {
                 {roles.entities[id].id}
               </th>
               <td className="px-4 py-3">{roles.entities[id].roleName}</td>
-              <td className="px-4 py-3 flex gap-2">
-                <Button
-                  color="blue"
-                  onClick={() => onUpdateRole(roles.entities[id].id)}
-                >
-                  Update
-                </Button>
-                <Button
-                  color="red"
-                  onClick={() => {
-                    setOpenDeleteModal(true);
-                    setDeleteId(roles.entities[id].id);
-                  }}
-                >
-                  Delete
-                </Button>
+
+              <td className="px-4 py-3">
+                {format(parseISO(roles.entities[id].createdAt), "MMM dd, yyyy")}
+              </td>
+              <td className="px-4 py-3">
+                {format(parseISO(roles.entities[id].updatedAt), "MMM dd, yyyy")}
               </td>
             </tr>
           ))}

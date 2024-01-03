@@ -6,7 +6,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useAddNewUserMutation } from "../usersApiSlice";
 import { toast } from "react-toastify";
-
+import generatePassword from "../../../utils/PasswordGenerator";
+import { PiKeyFill } from "react-icons/pi";
 const PersonalInfoFields = [
   { fieldName: "First Name", placeholder: "", id: "fname" },
   { fieldName: "Middle Name", placeholder: "", id: "mname" },
@@ -19,7 +20,7 @@ const PersonalInfoFields = [
 
 const AccInfoFields = [
   { fieldName: "Username", placeholder: "", id: "username" },
-  { fieldName: "Password", placeholder: "", id: "password", type: "password" },
+  { fieldName: "Password", placeholder: "", id: "password" },
 ];
 
 const schema = yup.object().shape({
@@ -69,6 +70,7 @@ const UserNewAddForm = () => {
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
   } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = async ({
@@ -96,7 +98,7 @@ const UserNewAddForm = () => {
     >
       <div className="flex-grow flex flex-col gap-4 p-4">
         <h2 className="uppercase font-bold">Personal Info</h2>
-        <div className="flex flex-col gap-5 p-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 p-3">
           {/* Account Fields */}
           {PersonalInfoFields.map((field) => (
             <div key={field.id}>
@@ -135,24 +137,41 @@ const UserNewAddForm = () => {
             </Select>
           </div>
           {/* Account Fields */}
-          {AccInfoFields.map((field) => (
-            <div key={field.id}>
-              <div>
-                <Label htmlFor={field.id} value={field.fieldName} />
-              </div>
 
-              <TextInput
-                id={field.id}
-                required
-                {...register(field.id)}
-                type={field?.type}
-                helperText={
-                  errors[field.id] && <>{errors[field.id]?.message}</>
-                }
-                color={errors[field.id] && "failure"}
+          <div>
+            <div>
+              <Label htmlFor="username" value="Username" />
+            </div>
+
+            <TextInput
+              id="username"
+              required
+              {...register("username")}
+              helperText={
+                errors["username"] && <>{errors["username"]?.message}</>
+              }
+              color={errors["username"] && "failure"}
+            />
+          </div>
+          <div>
+            <div className="flex items-center gap-4 justify-between">
+              <Label htmlFor="password" value="Password" />
+              <PiKeyFill
+                onClick={() => setValue("password", generatePassword())}
+                className="cursor-pointer"
               />
             </div>
-          ))}
+
+            <TextInput
+              id="password"
+              required
+              {...register("password")}
+              helperText={
+                errors["password"] && <>{errors["password"]?.message}</>
+              }
+              color={errors["password"] && "failure"}
+            />
+          </div>
           {/* BUTTONS */}
           <div className="flex flex-col sm:flex-row gap-4 ">
             <Button className="flex-grow" onClick={handleSubmit(onSubmit)}>

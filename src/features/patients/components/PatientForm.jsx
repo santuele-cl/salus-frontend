@@ -115,7 +115,7 @@ const schema = yup.object().shape({
   isSmoking: yup.boolean().required("isSmoking field is required"),
 });
 
-const PatientForm = () => {
+const PatientForm = ({ setShowPatientForm }) => {
   const [addNewPatient] = useAddPatientMutation();
 
   const {
@@ -144,7 +144,7 @@ const PatientForm = () => {
     >
       <div className="flex-grow flex flex-col gap-4 p-4">
         <h2 className="uppercase font-bold">Personal Info</h2>
-        <div className="flex flex-col gap-5 p-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 p-3">
           {/* Account Fields */}
           {patientFormFields.map(({ fieldName, id }) => {
             if (id === "bdate") {
@@ -160,7 +160,11 @@ const PatientForm = () => {
                     helperText={errors[id] && <>{errors[id]?.message}</>}
                     color={errors[id] && "failure"}
                   /> */}
-                  <input type="date" {...register(id)} />
+                  <input
+                    type="date"
+                    {...register(id)}
+                    className="w-full rounded-md border border-gray-300"
+                  />
                 </div>
               );
             } else if (id === "civilStatus") {
@@ -180,19 +184,28 @@ const PatientForm = () => {
               );
             } else if (id === "gender") {
               return (
-                <div key={id}>
+                <div
+                  key={id}
+                  className="flex gap-2 items-center justify-between border border-gray-300 px-2 py-3 rounded-md"
+                >
                   <div>
                     <Label value={fieldName} />
                   </div>
-                  <Radio
-                    id="male"
-                    {...register(id)}
-                    value="male"
-                    defaultChecked
-                  />
-                  <Label htmlFor="male">male</Label>
-                  <Radio id="female" {...register(id)} value="female" />
-                  <Label htmlFor="female">female</Label>
+                  <div className="flex gap-8">
+                    <div className="flex items-center gap-2">
+                      <Radio
+                        id="male"
+                        {...register(id)}
+                        value="male"
+                        defaultChecked
+                      />
+                      <Label htmlFor="male">male</Label>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Radio id="female" {...register(id)} value="female" />
+                      <Label htmlFor="female">female</Label>
+                    </div>
+                  </div>
                 </div>
               );
             } else
@@ -211,19 +224,43 @@ const PatientForm = () => {
                 </div>
               );
           })}
-          {radioFields.map(({ fieldName, id }) => (
-            <div key={id}>
-              <div>
-                <Label value={fieldName} />
+          <div>
+            {radioFields.map(({ fieldName, id }) => (
+              <div key={id} className="flex items-center gap-2 justify-between">
+                <div>
+                  <Label value={fieldName} />
+                </div>
+                <div className="flex gap-8">
+                  <div className="flex items-center gap-2">
+                    <Radio id="yes" {...register(id)} value={true} />
+                    <Label htmlFor="yes">Yes</Label>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Radio
+                      id="no"
+                      {...register(id)}
+                      value={false}
+                      defaultChecked
+                    />
+                    <Label htmlFor="no">No</Label>
+                  </div>
+                </div>
               </div>
-              <Radio id="yes" {...register(id)} value={true} />
-              <Label htmlFor="yes">Yes</Label>
-              <Radio id="no" {...register(id)} value={false} defaultChecked />
-              <Label htmlFor="no">No</Label>
-            </div>
-          ))}
+            ))}
+          </div>
+          <div className="grid grid-cols-2 gap-2 py-2">
+            <Button onClick={handleSubmit(onSubmit)}>Add</Button>
+            <Button
+              color="failure"
+              onClick={() => {
+                reset();
+                setShowPatientForm(false);
+              }}
+            >
+              Cancel
+            </Button>
+          </div>
         </div>
-        <Button onClick={handleSubmit(onSubmit)}>Add</Button>
       </div>
     </form>
   );

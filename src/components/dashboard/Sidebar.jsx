@@ -23,9 +23,7 @@ const Sidebar = () => {
               className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
               <PiUsersThreeFill color="gray" size={24} />
-              <span className="flex-1 ml-3 whitespace-nowrap">
-                Configuration
-              </span>
+              <span className="flex-1 ml-3 whitespace-nowrap">Content</span>
             </Link>
           </li>
           {/* USERS */}
@@ -49,7 +47,7 @@ const Sidebar = () => {
             </Link>
           </li>
           {/* CMS */}
-          <li>
+          {/* <li>
             <Link
               to="/dashboard/config"
               className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
@@ -57,9 +55,9 @@ const Sidebar = () => {
               <PiUsersThreeFill color="gray" size={24} />
               <span className="flex-1 ml-3 whitespace-nowrap">Patient</span>
             </Link>
-          </li>
+          </li> */}
           {/* APPT */}
-          <li>
+          {/* <li>
             <Link
               to="/dashboard/appointments"
               className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
@@ -69,9 +67,9 @@ const Sidebar = () => {
                 Appointments
               </span>
             </Link>
-          </li>
+          </li> */}
           {/* PATIENTS */}
-          <li>
+          {/* <li>
             <Link
               to="/dashboard/patients"
               className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
@@ -79,9 +77,9 @@ const Sidebar = () => {
               <PiLockKeyOpenFill color="gray" size={24} />
               <span className="flex-1 ml-3 whitespace-nowrap">Patients</span>
             </Link>
-          </li>
+          </li> */}
           {/* RECORDS */}
-          <li>
+          {/* <li>
             <Link
               to="/dashboard/records"
               className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
@@ -89,7 +87,7 @@ const Sidebar = () => {
               <PiLockKeyOpenFill color="gray" size={24} />
               <span className="flex-1 ml-3 whitespace-nowrap">Records</span>
             </Link>
-          </li>
+          </li> */}
         </ul>
         <ul className="pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700">
           <li>

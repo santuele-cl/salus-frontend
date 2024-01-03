@@ -15,7 +15,7 @@ const Users = () => {
         <UserSearchBarHeader />
       </div>
       <div className="mx-auto max-w-screen-xl border border-gray-300 mb-4 rounded-lg bg-white p-4">
-        <h2 className="uppercase my-4 font-bold text-lg text-green-600">
+        <h2 className=" rounded-md uppercase p-4 font-bold text-lg bg-green-600 text-gray-200">
           Add new user
         </h2>
         <hr />

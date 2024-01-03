@@ -6,6 +6,7 @@ import ErrorFlexible from "../../components/ErrorFlexible";
 import PatientProfile from "./components/PatientProfile";
 import PatientChart from "./components/PatientChart";
 import {
+  PiArrowCounterClockwiseBold,
   PiMagnifyingGlassBold,
   PiPencilSimpleLineFill,
   PiPlusBold,
@@ -75,10 +76,10 @@ const PatientTest = () => {
 
           {/* VISITS */}
           <div className="rounded-md  w-full md:w-4/6 bg-white p-2 min-h-[90vh]">
-            <div className="flex gap-2 mb-2">
+            <div className="flex gap-2 mb-2 items-center">
               <div className="bg-green-500 py-2 px-4 rounded-md  w-[90%]">
                 <h2 className="text-center text-gray-200 font-semibold uppercase tracking-widest">
-                  VISITS
+                  RECORDS
                 </h2>
               </div>
               <Button
@@ -93,12 +94,22 @@ const PatientTest = () => {
               {isError && <ErrorFlexible err={error} />}
               {isSuccess && patient && (
                 <>
-                  {showVisitForm && (
-                    <VisitForm
-                      patientChartId={patient["patientChart"]["id"]}
-                      setShowVisitForm={setShowVisitForm}
-                    />
-                  )}
+                  <Modal
+                    show={showVisitForm}
+                    size="5xl"
+                    onClose={() => setShowVisitForm(false)}
+                    popup
+                  >
+                    <Modal.Header>Patient Visit Form</Modal.Header>
+                    <Modal.Body>
+                      {/* <div className="space-y-6"> */}
+                      <VisitForm
+                        patientChartId={patient["patientChart"]["id"]}
+                        setShowVisitForm={setShowVisitForm}
+                      />
+                      {/* </div> */}
+                    </Modal.Body>
+                  </Modal>
                   <PatientChart
                     patientChartId={patient["patientChart"]["id"]}
                   />
@@ -117,7 +128,7 @@ const PatientTest = () => {
         <Modal.Header>New Patient Form</Modal.Header>
         <Modal.Body>
           {/* <div className="space-y-6"> */}
-          <PatientForm />
+          <PatientForm setShowPatientForm={setShowPatientForm} />
           {/* </div> */}
         </Modal.Body>
       </Modal>

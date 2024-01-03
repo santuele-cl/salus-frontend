@@ -1,31 +1,11 @@
-import { Button, Label, Spinner, TextInput } from "flowbite-react";
-import {
-  PiMagnifyingGlassBold,
-  PiUserBold,
-  PiUsersThreeFill,
-} from "react-icons/pi";
-import SpinnerWhole from "../../../components/SpinnerWhole";
-import { useGetUserByIdQuery, useLazyGetUserByIdQuery } from "../usersApiSlice";
+import { Button, Spinner, TextInput } from "flowbite-react";
+import { PiMagnifyingGlassBold, PiUserBold } from "react-icons/pi";
+import { useLazyGetUserByIdQuery } from "../usersApiSlice";
 import { useState } from "react";
 import UserSearchContent from "./UserSearchContent";
 
 const UserSearchBarHeader = () => {
   const [userId, setUserId] = useState(null);
-
-  // const [
-  //   trigger,
-  //   { data: patient, isSuccess, isLoading, isFetching, isError, error },
-  // ] = useLazyGetPatientByIdQuery();
-
-  // const onPatientSearch = async () => {
-  //   if (patientId) {
-  //     try {
-  //       await trigger({ id: patientId }).unwrap();
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-  // };
 
   const [
     trigger,

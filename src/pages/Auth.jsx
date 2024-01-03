@@ -10,7 +10,7 @@ const Auth = () => {
   const { state } = useLocation();
 
   if (isLoggedIn) {
-    return <Navigate to={`${state?.from ? state?.from : "/dashboard"}`} />;
+    return <Navigate to="/redirect" />;
   }
 
   return (

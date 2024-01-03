@@ -40,6 +40,7 @@ const VisitForm = ({ patientChartId }) => {
     reset,
   } = useForm({ resolver: yupResolver(schema) });
 
+  console.log(errors);
   const onSubmit = async ({
     accompaniedBy,
     chiefComplaint,
@@ -81,7 +82,7 @@ const VisitForm = ({ patientChartId }) => {
                 outline
                 color="failure"
                 className="flex-grow"
-                onClick={reset}
+                onClick={() => reset()}
               >
                 Clear
               </Button>

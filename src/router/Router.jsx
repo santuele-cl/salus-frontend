@@ -10,23 +10,24 @@ import NotFound from "../pages/error/NotFound";
 import Unauthorized from "../pages/Unauthorized";
 import Unauthenticated from "../pages/Unauthenticated";
 import Dashboard from "../pages/Dashboard";
-import Drawer from "../components/Drawer";
+// import Drawer from "../components/Drawer";
 
 import VerifyToken from "../features/auth/VerifyToken";
 import RequireAuth from "../features/auth/RequireAuth";
 import Roles from "../features/role/Roles";
 import Users from "../features/user/Users";
 import User from "../features/user/User";
-import Profile from "../pages/Profile";
+// import Profile from "../pages/Profile";
 import RequireRole from "../features/auth/RequireRole";
-import Patients from "../features/patients/Patients";
-import Appointments from "../features/appointment/Appointments";
-import Records from "../features/record/Records";
+// import Patients from "../features/patients/Patients";
+// import Appointments from "../features/appointment/Appointments";
+// import Records from "../features/record/Records";
 // import Stepper from "../test/Stepper";
-import Onboard from "../pages/onboard/Onboard";
+// import Onboard from "../pages/onboard/Onboard";
 import Configuration from "../features/config/Configuration";
 import Initialize from "../features/config/Initialize";
 import PatientOnboard from "../features/patients/PatientOnboard";
+import RoleRedirect from "../components/RoleRedirect";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -36,31 +37,32 @@ const router = createBrowserRouter(
           <Route index element={<Auth />} />
           <Route path="auth" element={<Auth />} />
           <Route element={<RequireAuth />}>
-            <Route path="dashboard" element={<Dashboard />}>
-              <Route index element={<Configuration />} />
-              <Route path="config" element={<Configuration />} />
-              <Route element={<RequireRole allowedRoles={["ADMIN"]} />}>
+            <Route element={<RequireRole allowedRoles={["ADMIN"]} />}>
+              <Route path="dashboard" element={<Dashboard />}>
+                <Route index element={<Configuration />} />
+                <Route path="config" element={<Configuration />} />
                 <Route path="users" element={<Users />} />
                 <Route path="users/:userId" element={<User />} />
                 <Route path="roles" element={<Roles />} />
               </Route>
               <Route path="config" element={<Configuration />} />
               {/* PROTOTYPE */}
-              <Route path="patients" element={<Patients />} />
+              {/* <Route path="patients" element={<Patients />} />
               <Route path="appointments" element={<Appointments />} />
               <Route path="profile" element={<Profile />} />
-              <Route path="records" element={<Records />} />
+              <Route path="records" element={<Records />} /> */}
             </Route>
             <Route
               element={<RequireRole allowedRoles={["NURSE", "PHYSICIAN"]} />}
             >
               <Route path="patient" element={<PatientOnboard />}></Route>
             </Route>
+            <Route path="/redirect" element={<RoleRedirect />} />
           </Route>
 
-          <Route path="drawer" element={<Drawer />} />
-          <Route path="test" element={<Onboard />} />
-          <Route path="onboard" element={<Onboard />} />
+          {/* <Route path="drawer" element={<Drawer />} /> */}
+          {/* <Route path="test" element={<Onboard />} /> */}
+          {/* <Route path="onboard" element={<Onboard />} /> */}
           <Route path="unauthenticated" element={<Unauthenticated />} />
           <Route path="unauthorized" element={<Unauthorized />} />
           <Route path="/404" element={<NotFound />} />

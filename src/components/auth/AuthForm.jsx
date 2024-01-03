@@ -24,7 +24,7 @@ const AuthForm = () => {
       const { accessToken } = await login(data).unwrap();
       dispatch(setAccessToken(accessToken));
       reset();
-      navigate(`${state?.from ? state?.from : "/dashboard"}`);
+      navigate("/redirect");
     } catch (error) {
       toast.error(error?.data?.message);
     }
