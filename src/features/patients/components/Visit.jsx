@@ -1,4 +1,4 @@
-import { TextInput, Label, Button } from "flowbite-react";
+import { TextInput, Label, Textarea } from "flowbite-react";
 import EvaluationForm from "./EvaluationForm";
 import VitalsForm from "./VitalsForm";
 import EvaluationFormRO from "./EvaluationFormRO";
@@ -12,7 +12,7 @@ const visitFields2 = [
   { fieldName: "Chief Complaint", value: "chiefComplaint" },
   { fieldName: "HPI", value: "hpi" },
   { fieldName: "Accompanied By", value: "accompaniedBy" },
-  { fieldName: "Date of Visit", value: "createdAt" },
+  // { fieldName: "Date of Visit", value: "createdAt" },
   { fieldName: "Service Dept.", value: "serviceDepartment" },
 ];
 
@@ -20,7 +20,7 @@ const Visit = ({ visitData }) => {
   const { roles } = useGetUserData();
   const [showVisitInfo, setShowVisitInfo] = useState(false);
   const [showVisitInfo2, setShowVisitInfo2] = useState(false);
-  console.log(visitData);
+  console.log("visitData", visitData);
   return (
     <div>
       <div className="rounded-md border border-gray-400 p-4 flex flex-col gap-2">
@@ -47,16 +47,39 @@ const Visit = ({ visitData }) => {
               return (
                 <div key={value} className="flex gap-4 items-center">
                   <Label htmlFor={value} value={fieldName} className="w-1/4" />
-                  <TextInput
-                    readOnly
-                    id={value}
-                    value={
-                      value === "serviceDepartment"
-                        ? visitData["serviceDepartment"]["serviceDeptName"]
-                        : visitData[value]
-                    }
-                    className="w-full"
-                  />
+                  {value === "hpi" ? (
+                    <Textarea
+                      readOnly
+                      id={value}
+                      value={
+                        value === "serviceDepartment"
+                          ? visitData["serviceDepartment"]["serviceDeptName"]
+                          : value === "createdAt"
+                          ? format(
+                              parseISO(visitData["createdAt"]),
+                              "MMM dd, yyyy"
+                            )
+                          : visitData[value]
+                      }
+                      className="w-full"
+                    />
+                  ) : (
+                    <TextInput
+                      readOnly
+                      id={value}
+                      value={
+                        value === "serviceDepartment"
+                          ? visitData["serviceDepartment"]["serviceDeptName"]
+                          : value === "createdAt"
+                          ? format(
+                              parseISO(visitData["createdAt"]),
+                              "MMM dd, yyyy"
+                            )
+                          : visitData[value]
+                      }
+                      className="w-full"
+                    />
+                  )}
                 </div>
               );
             })}

@@ -8,16 +8,46 @@ import { useState } from "react";
 import { PiPlusBold } from "react-icons/pi";
 
 const schema = yup.object().shape({
-  heightInCm: yup.number().positive().required("Height is required"),
-  weightInKl: yup.number().positive().required("Weight is required"),
-  bloodPressure: yup.string().required("Treatment is required"),
-  pulseRate: yup.string().required("Treatment is required"),
-  respiratoryRate: yup.string().required("Treatment is required"),
-  bodyTemperatureInCelsius: yup
+  heightInCm: yup
     .number()
-    .positive()
-    .required("Treatment is required"),
-  oxygenSaturation: yup.string().required("Treatment is required"),
+    .typeError("Height must be a number")
+    .positive("Must be a positive number")
+    .required("Height is required"),
+  weightInKl: yup
+    .number()
+    .typeError("Weight must be a number")
+    .positive("Weight must be a positive number")
+    .required("Weight is required"),
+  bpSystolic: yup
+    .number()
+    .typeError("BP Systolic must be a number")
+    .positive("BP Systolic must be a positive number")
+    .required("BP Systolic is required"),
+  bpDiastolic: yup
+    .number()
+    .typeError("BP Diastolic must be a number")
+    .positive("BP Diastolic must be a positive number")
+    .required("BP Diastolic is required"),
+  pulseRate: yup
+    .number()
+    .typeError("Pulse Rate  must be a number")
+    .positive("Pulse Rate  must be a positive number")
+    .required("Pulse Rate is required"),
+  respiratoryRate: yup
+    .number()
+    .typeError("Respiratory Rate must be a number")
+    .positive("Respiratory Rate must be a positive number")
+    .required("Respiratory Rate is required"),
+  bodyTempInCelsius: yup
+    .number()
+    .typeError("Body Temp. must be a number")
+    .positive("Body Temp. must be a positive number")
+    .required("Body Temp. is required"),
+  oxygenSaturation: yup
+    .number()
+    .typeError("Oxygen Saturatio must be a number")
+    .positive("Oxygen Saturatio must be a positive number")
+    .required("Oxygen Saturation is required"),
 });
 
 const evaluationFields = [
@@ -27,10 +57,11 @@ const evaluationFields = [
     id: "heightInCm",
   },
   { fieldName: "Weight", placeholder: "Unit in kg", id: "weightInKl" },
-  { fieldName: "Blood Pressure", placeholder: "", id: "bloodPressure" },
+  { fieldName: "BP Systolic", placeholder: "", id: "bpSystolic" },
+  { fieldName: "BP Diastolic", placeholder: "", id: "bpDiastolic" },
   { fieldName: "Pulse Rate", placeholder: "", id: "pulseRate" },
   { fieldName: "Respiratory Rate", placeholder: "", id: "respiratoryRate" },
-  { fieldName: "Body Tempt", placeholder: "", id: "bodyTemperatureInCelsius" },
+  { fieldName: "Body Tempt", placeholder: "", id: "bodyTempInCelsius" },
   { fieldName: "Oxygen Saturation", placeholder: "", id: "oxygenSaturation" },
 ];
 

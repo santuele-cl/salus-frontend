@@ -11,6 +11,15 @@ export const vitalsApiSlice = apiSlice.injectEndpoints({
       }),
       providesTags: (_result, _error, arg) => [{ type: "Vitals", id: "LIST" }],
     }),
+    getVitalById: builder.query({
+      query: ({ id = "0" }) => {
+        return {
+          url: `${VITALS_BASE_URL}/${id}`,
+          method: "GET",
+        };
+      },
+      providesTags: (_result, _error, arg) => [{ type: "Vitals", id: arg.id }],
+    }),
     addVitals: builder.mutation({
       query: ({ visitId, vitalsData }) => ({
         url: VITALS_BASE_URL,
@@ -22,5 +31,8 @@ export const vitalsApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetVitalsByVisitIdQuery, useAddVitalsMutation } =
-  vitalsApiSlice;
+export const {
+  useGetVitalsByVisitIdQuery,
+  useGetVitalByIdQuery,
+  useAddVitalsMutation,
+} = vitalsApiSlice;

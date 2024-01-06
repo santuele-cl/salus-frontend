@@ -2,7 +2,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { toast } from "react-toastify";
 import { useAddVisitMutation } from "./visitApiSlice";
-import { Button, Label, Select, TextInput } from "flowbite-react";
+import { Button, Label, Select, TextInput, Textarea } from "flowbite-react";
 import { useForm } from "react-hook-form";
 
 const schema = yup.object().shape({
@@ -112,13 +112,23 @@ const VisitForm = ({ patientChartId }) => {
               <div key={id} className="flex gap-4 items-center">
                 <Label htmlFor={id} value={fieldName} className="w-1/4" />
                 <div className="w-full">
-                  <TextInput
-                    id={id}
-                    className="w-full"
-                    {...register(`${id}`)}
-                    helperText={errors[id] && <>{errors[id]?.message}</>}
-                    color={errors[id] && "failure"}
-                  />
+                  {id === "hpi" ? (
+                    <Textarea
+                      id={id}
+                      className="w-full"
+                      {...register(`${id}`)}
+                      helperText={errors[id] && <>{errors[id]?.message}</>}
+                      color={errors[id] && "failure"}
+                    />
+                  ) : (
+                    <TextInput
+                      id={id}
+                      className="w-full"
+                      {...register(`${id}`)}
+                      helperText={errors[id] && <>{errors[id]?.message}</>}
+                      color={errors[id] && "failure"}
+                    />
+                  )}
                 </div>
               </div>
             );
