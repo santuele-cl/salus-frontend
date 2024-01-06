@@ -19,7 +19,7 @@ const PatientVisits = ({ patientChartId }) => {
     error,
     refetch,
   } = useGetVisitsByPatientChartIdQuery(patientChartId);
-  console.log(visits);
+
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-4 justify-between">

@@ -39,7 +39,7 @@ const EvaluationFormRO = ({ evaluationData }) => {
                       readOnly
                       id={id}
                       value={evaluationData[id]}
-                      className="w-full"
+                      className="w-full resize-none"
                     />
                   </div>
                 </div>

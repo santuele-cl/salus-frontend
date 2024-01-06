@@ -3,7 +3,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { toast } from "react-toastify";
-import { Button, Label, TextInput } from "flowbite-react";
+import { Button, Label, Modal, TextInput, Textarea } from "flowbite-react";
+import { useState } from "react";
+import { PiPlusBold } from "react-icons/pi";
 
 const schema = yup.object().shape({
   physicalExamination: yup
@@ -32,6 +34,8 @@ const evaluationFields = [
 ];
 
 const EvaluationForm = ({ visitId }) => {
+  const [showEvaluationForm, setShowEvaluationForm] = useState(false);
+
   const [addEvaluation] = useAddEvaluationMutation();
 
   const {
@@ -66,47 +70,70 @@ const EvaluationForm = ({ visitId }) => {
 
   return (
     <div>
-      <form
-        onSubmit={(e) => e.preventDefault()}
-        className="mb-2 flex flex-col gap-2"
-      >
+      <div className="mb-2 flex flex-col gap-2">
         <div className="flex gap-2 items-center justify-between">
           <h2 className="font-semibold uppercase text-green-600">
             Medical Evaluation
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 ">
-            <Button className="flex-grow" onClick={handleSubmit(onSubmit)}>
-              Add
-            </Button>
             <Button
-              outline
-              color="failure"
               className="flex-grow"
-              onClick={reset}
+              onClick={() => setShowEvaluationForm((prev) => !prev)}
             >
-              Clear
+              <PiPlusBold />
             </Button>
           </div>
         </div>
         <hr />
 
-        {evaluationFields.map(({ fieldName, id }) => {
-          return (
-            <div key={id} className="flex gap-4 items-center">
-              <Label htmlFor={id} value={fieldName} className="w-1/4" />
-              <div className="w-full">
-                <TextInput
-                  id={id}
-                  className="w-full"
-                  {...register(`${id}`)}
-                  helperText={errors[id] && <>{errors[id]?.message}</>}
-                  color={errors[id] && "failure"}
-                />
+        <Modal
+          show={showEvaluationForm}
+          size="5xl"
+          onClose={() => setShowEvaluationForm(false)}
+          popup
+        >
+          <Modal.Header>
+            <span className="ml-4 text-green-500 font-semibold uppercase">
+              Medical Evaluation Form
+            </span>
+          </Modal.Header>
+          <Modal.Body>
+            <form onSubmit={(e) => e.preventDefault()} className="p-4">
+              <div className="grid grid-cols-1 gap-4">
+                {evaluationFields.map(({ fieldName, id }) => {
+                  return (
+                    <div key={id} className="flex gap-4 items-center">
+                      <Label htmlFor={id} value={fieldName} className="w-1/4" />
+                      <div className="w-full">
+                        <Textarea
+                          id={id}
+                          className="w-full"
+                          {...register(`${id}`)}
+                          helperText={errors[id] && <>{errors[id]?.message}</>}
+                          color={errors[id] && "failure"}
+                        />
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
-            </div>
-          );
-        })}
-      </form>
+              <div className="flex gap-2 mt-2">
+                <Button className="flex-grow" onClick={handleSubmit(onSubmit)}>
+                  Add
+                </Button>
+                <Button
+                  outline
+                  color="failure"
+                  className="flex-grow"
+                  onClick={() => reset()}
+                >
+                  Clear
+                </Button>
+              </div>
+            </form>
+          </Modal.Body>
+        </Modal>
+      </div>
     </div>
   );
 };

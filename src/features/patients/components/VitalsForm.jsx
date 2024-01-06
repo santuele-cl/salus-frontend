@@ -50,7 +50,7 @@ const schema = yup.object().shape({
     .required("Oxygen Saturation is required"),
 });
 
-const evaluationFields = [
+const vitalsFields = [
   {
     fieldName: "Height",
     placeholder: "Unit in cm",
@@ -61,13 +61,12 @@ const evaluationFields = [
   { fieldName: "BP Diastolic", placeholder: "", id: "bpDiastolic" },
   { fieldName: "Pulse Rate", placeholder: "", id: "pulseRate" },
   { fieldName: "Respiratory Rate", placeholder: "", id: "respiratoryRate" },
-  { fieldName: "Body Tempt", placeholder: "", id: "bodyTempInCelsius" },
+  { fieldName: "Body Temp", placeholder: "", id: "bodyTempInCelsius" },
   { fieldName: "Oxygen Saturation", placeholder: "", id: "oxygenSaturation" },
 ];
 
 const VitalsForm = ({ visitId }) => {
   const [showVitalsForm, setShowVitalsForm] = useState(false);
-  console.log(visitId);
   const [addVitals] = useAddVitalsMutation({ id: visitId });
 
   const {
@@ -119,11 +118,15 @@ const VitalsForm = ({ visitId }) => {
           onClose={() => setShowVitalsForm(false)}
           popup
         >
-          <Modal.Header>Vital Signs Form</Modal.Header>
+          <Modal.Header>
+            <span className="ml-4 text-green-500 font-semibold uppercase">
+              Vital Signs Form
+            </span>
+          </Modal.Header>
           <Modal.Body>
-            <form onSubmit={(e) => e.preventDefault()}>
+            <form onSubmit={(e) => e.preventDefault()} className="py-4">
               <div className="grid grid-cols-2 gap-4">
-                {evaluationFields.map(({ fieldName, id, placeholder }) => {
+                {vitalsFields.map(({ fieldName, id, placeholder }) => {
                   return (
                     <div key={id} className="flex gap-4 items-center">
                       <Label htmlFor={id} value={fieldName} className="w-1/4" />

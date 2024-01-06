@@ -13,6 +13,15 @@ export const evaluationApiSlice = apiSlice.injectEndpoints({
         { type: "Evaluation", id: arg.id },
       ],
     }),
+    getEvaluationById: builder.query({
+      query: ({ id = "0" }) => ({
+        url: `${EVALUATION_BASE_URL}/${id}`,
+        method: "GET",
+      }),
+      providesTags: (_result, _error, arg) => [
+        { type: "Evaluation", id: arg.id },
+      ],
+    }),
     addEvaluation: builder.mutation({
       query: ({ visitId, evaluationData }) => ({
         url: EVALUATION_BASE_URL,
