@@ -23,10 +23,10 @@ export const evaluationApiSlice = apiSlice.injectEndpoints({
       ],
     }),
     addEvaluation: builder.mutation({
-      query: ({ visitId, evaluationData }) => ({
+      query: ({ visitId, evaluationData, medicationData }) => ({
         url: EVALUATION_BASE_URL,
         method: "POST",
-        body: { visitId, evaluationData },
+        body: { visitId, evaluationData, medicationData },
       }),
       invalidatesTags: [{ type: "Evaluation", id: "LIST" }],
     }),
