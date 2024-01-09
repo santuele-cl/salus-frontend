@@ -16,8 +16,11 @@ import PatientForm from "./components/PatientForm";
 import PatientPageNav from "./components/PatientPageNav";
 import LabOrderTable from "./components/LabOrderTable";
 import LabOrderForm from "./components/LabOrderForm";
+import useGetUserData from "../../hooks/useGetUserData";
 
 const PatientTest = () => {
+  const { roles } = useGetUserData();
+
   const [patientId, setPatientId] = useState("");
   const [showVisitForm, setShowVisitForm] = useState(false);
   const [showPatientForm, setShowPatientForm] = useState(false);
@@ -120,23 +123,32 @@ const PatientTest = () => {
               )}
             </div>
             <div className="mt-4">
-              <div className="bg-green-500 py-2 px-4 rounded-md items-center">
+              <div className="bg-green-500 py-3 px-4 rounded-md items-center">
                 <div className="flex items-center justify-between">
                   <h2 className="text-center text-gray-200 font-semibold uppercase tracking-widest">
                     Laboratory Orders
                   </h2>
-                  <Button
-                    color="gray"
-                    onClick={() => setShowLabOrderForm((prev) => !prev)}
-                  >
-                    <PiPlusBold />
-                  </Button>
+                  {isSuccess && patient && (
+                    <Button
+                      color="gray"
+                      onClick={() => setShowLabOrderForm((prev) => !prev)}
+                      disabled={!roles || !roles === "PHYSICIAN"}
+                    >
+                      <PiPlusBold />
+                    </Button>
+                  )}
                 </div>
               </div>
               <div className="w-full overflow-scroll">
-                <LabOrderTable
-                  patientChartId={patient ? patient["patientChart"]["id"] : "0"}
-                />
+                {(isFetching || isLoading) && <SpinnerFlexible />}
+                {isError && <ErrorFlexible err={error} />}
+                {isSuccess && patient && (
+                  <LabOrderTable
+                    patientChartId={
+                      patient ? patient["patientChart"]["id"] : "0"
+                    }
+                  />
+                )}
               </div>
             </div>
           </div>

@@ -20,7 +20,7 @@ const Visit = ({ visitData }) => {
   const { roles } = useGetUserData();
   const [showVisitInfo, setShowVisitInfo] = useState(false);
   const [showVisitInfo2, setShowVisitInfo2] = useState(false);
-  console.log("visitData", visitData);
+  // console.log("visitData", visitData);
   return (
     <div>
       <div className="rounded-md border border-gray-400 p-4 flex flex-col gap-2">

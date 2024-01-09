@@ -22,7 +22,7 @@ const medicationFields = [
 ];
 const EvaluationFormRO = ({ evaluationData }) => {
   const [setshowVitals, setSetshowVitals] = useState(true);
-  console.log("evaluationData", evaluationData);
+  // console.log("evaluationData", evaluationData);
   return (
     <div>
       <form

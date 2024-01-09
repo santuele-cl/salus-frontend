@@ -47,11 +47,13 @@ const LabOrderForm = ({
       await add({
         labOrderData: { ...data },
         patientChartId,
-      });
+      }).unwrap();
       reset();
       setShowLabOrderForm(false);
       toast.success("Laboratory data updated.");
     } catch (err) {
+      toast.error(`${err?.data?.message}`);
+
       console.log(err);
     }
   };

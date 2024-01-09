@@ -3,7 +3,7 @@ import useGetUserData from "../hooks/useGetUserData";
 
 const RoleRedirect = () => {
   const { roles } = useGetUserData();
-  console.log(roles);
+  // console.log(roles);
   if (roles === "ADMIN") {
     return <Navigate to="/dashboard" />;
   } else if (roles === "NURSE" || roles === "PHYSICIAN") {

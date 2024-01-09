@@ -11,7 +11,7 @@ import { setAccessToken } from "../../features/auth/authSlice";
 
 const AuthForm = () => {
   const navigate = useNavigate();
-  const { state } = useLocation();
+  // const { state } = useLocation();
   const dispatch = useDispatch();
 
   const [login] = useLoginMutation();
@@ -19,7 +19,7 @@ const AuthForm = () => {
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
+    // console.log(data);
     try {
       const { accessToken } = await login(data).unwrap();
       dispatch(setAccessToken(accessToken));

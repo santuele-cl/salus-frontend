@@ -33,7 +33,7 @@ const UploadLabOrderForm = ({
       await update({
         updatedLabOrderData: { ...data },
         labOrderId: updateLabOrderId,
-      });
+      }).unwrap();
       reset();
       setUpdateLabOrderId("");
       setOpenModal(false);

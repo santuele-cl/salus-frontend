@@ -19,7 +19,7 @@ const LabOrderTable = ({ patientChartId }) => {
 
   const { data: laborders } =
     useGetLabOrdersByPatientChartIdQuery(patientChartId);
-  console.log("updateLabOrderId", updateLabOrderId);
+  // console.log("updateLabOrderId", updateLabOrderId);
 
   return (
     <>
