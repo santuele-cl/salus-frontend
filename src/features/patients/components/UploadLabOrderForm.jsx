@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { toast } from "react-toastify";
-import { useUpdateLabOrderMutation } from "../../laborders/labordersApiSlice";
+import { useUpdateLabOrderMutation } from "../../laborders/labOrdersApiSlice";
 
 const schema = yup.object().shape({
   result: yup.string().required("Result is required"),
