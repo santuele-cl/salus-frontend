@@ -8,7 +8,7 @@ import { Mutex } from "async-mutex";
 const mutex = new Mutex();
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://localhost:8000",
+  baseUrl: "https://salus-api.onrender.com",
   credentials: "include", //if true, send httpOnly cookie along with the request
   prepareHeaders: (headers, { getState }) => {
     const accessToken = getState().auth.accessToken;
