@@ -1,7 +1,7 @@
 import { Button, Modal, Table } from "flowbite-react";
-import { useGetLabOrdersByPatientChartIdQuery } from "../../laborders/labordersApiSlice";
 import { useState } from "react";
 import UploadLabOrderForm from "./UploadLabOrderForm";
+import { useGetLabOrdersByPatientChartIdQuery } from "../../laborders/labordersApiSlice";
 
 const laborderTableHeaders = [
   { name: "ID", id: "id" },
