@@ -4,10 +4,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { toast } from "react-toastify";
-import { useAddLabOrderMutation } from "../../laborders/labordersApiSlice";
 import { useGetLabProcedureCategoriesQuery } from "../../labProcCategories/labProcCategories";
 import { useState } from "react";
 import SpinnerFlexible from "../../../components/SpinnerFlexible";
+import { useAddLabOrderMutation } from "../../laborders/labOrdersApiSlice";
 
 const schema = yup.object().shape({
   labProcedureId: yup.string().required("Laboratory Procedure is required"),
