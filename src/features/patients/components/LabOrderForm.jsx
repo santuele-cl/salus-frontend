@@ -1,13 +1,10 @@
-import { Button, Card, Label, Modal, Select, TextInput } from "flowbite-react";
+import { Button, Label, Modal, Select } from "flowbite-react";
 import { useForm } from "react-hook-form";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { toast } from "react-toastify";
-import {
-  useAddLabOrderMutation,
-  useUpdateLabOrderMutation,
-} from "../../laborders/labordersApiSlice";
+import { useAddLabOrderMutation } from "../../laborders/labordersApiSlice";
 import { useGetLabProcedureCategoriesQuery } from "../../labProcCategories/labProcCategories";
 import { useState } from "react";
 import SpinnerFlexible from "../../../components/SpinnerFlexible";
@@ -25,21 +22,15 @@ const LabOrderForm = ({
     data: categories,
     isFetching,
     isLoading,
-    isError,
     isSuccess,
-    error,
   } = useGetLabProcedureCategoriesQuery();
   const [add] = useAddLabOrderMutation();
 
   const [activeCategory, setActiveCategory] = useState("hematology");
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-    watch,
-  } = useForm({ resolver: yupResolver(schema) });
+  const { register, handleSubmit, reset } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const onAddLabOrder = async (data) => {
     console.log("selected procedure", data);

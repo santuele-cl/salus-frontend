@@ -18,15 +18,9 @@ const UploadLabOrderForm = ({
 }) => {
   const [update] = useUpdateLabOrderMutation();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-    setValue,
-    getValues,
-    watch,
-  } = useForm({ resolver: yupResolver(schema) });
+  const { register, handleSubmit, reset, watch } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const onUpdate = async (data) => {
     try {
