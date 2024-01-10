@@ -145,7 +145,9 @@ const PatientTest = () => {
                 {isSuccess && patient && (
                   <LabOrderTable
                     patientChartId={
-                      patient && isSuccess ? patient["patientChart"]["id"] : "0"
+                      patient["patientChart"]["id"]
+                        ? patient["patientChart"]["id"]
+                        : "0"
                     }
                   />
                 )}
@@ -159,7 +161,7 @@ const PatientTest = () => {
           setShowLabOrderForm={setShowLabOrderForm}
           showLabOrderForm={showLabOrderForm}
           patientChartId={
-            patient && isSuccess ? patient["patientChart"]["id"] : "0"
+            patient["patientChart"]["id"] ? patient["patientChart"]["id"] : "0"
           }
         />
       )}

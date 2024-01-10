@@ -8,7 +8,6 @@ const laborderTableHeaders = [
   { name: "Procedure", id: "LabProcedure" },
   { name: "Requesting Physician", id: "requestingPhysician" },
   { name: "Result", id: "result" },
-  //   { name: "Upload date", id: "date" },
 ];
 
 const LabOrderTable = ({ patientChartId }) => {
@@ -23,18 +22,14 @@ const LabOrderTable = ({ patientChartId }) => {
     isFetching,
   } = useGetLabOrdersByPatientChartIdQuery(patientChartId);
   // console.log("updateLabOrderId", updateLabOrderId);
-
+  console.log(laborders);
   return (
     <>
       <Table striped>
         <Table.Head>
-          {patientChartId !== "0" &&
-            isSuccess &&
-            laborders &&
-            laborders.length > 0 &&
-            laborderTableHeaders.map(({ name }, i) => {
-              return <Table.HeadCell key={name + i}>{name}</Table.HeadCell>;
-            })}
+          {laborderTableHeaders.map(({ name }, i) => {
+            return <Table.HeadCell key={name + i}>{name}</Table.HeadCell>;
+          })}
           <Table.HeadCell>Action</Table.HeadCell>
         </Table.Head>
         <Table.Body>

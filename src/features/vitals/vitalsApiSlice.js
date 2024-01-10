@@ -9,7 +9,7 @@ export const vitalsApiSlice = apiSlice.injectEndpoints({
         url: `${VITALS_BASE_URL}/vs/${id}`,
         method: "GET",
       }),
-      providesTags: (_result, _error, arg) => [{ type: "Vitals", id: "LIST" }],
+      providesTags: () => [{ type: "Vitals", id: "LIST" }],
     }),
     getVitalById: builder.query({
       query: ({ id = "0" }) => {

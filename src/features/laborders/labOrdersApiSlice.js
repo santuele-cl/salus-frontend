@@ -10,12 +10,7 @@ export const labOrdersApiSlice = apiSlice.injectEndpoints({
         method: "GET",
       }),
       keepUnusedDataFor: 60 * 5,
-      providesTags: (result) => [
-        { type: "LabOrders", id: "LIST" },
-        ...(result?.ids
-          ? result.ids.map((id) => ({ type: "LabOrders", id }))
-          : []),
-      ],
+      providesTags: () => [{ type: "LabOrders", id: "LIST" }],
     }),
     getLabOrderById: builder.query({
       query: ({ labOrderId = "0" }) => ({

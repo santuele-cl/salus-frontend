@@ -19,12 +19,7 @@ export const visitApiSlice = apiSlice.injectEndpoints({
       transformResponse: (visits) => {
         return visits;
       },
-      providesTags: (result) => [
-        { type: "Visits", id: "LIST" },
-        ...(result?.ids
-          ? result.ids.map((id) => ({ type: "Visits", id }))
-          : []),
-      ],
+      providesTags: () => [{ type: "Visits", id: "LIST" }],
     }),
     getVisit: builder.query({
       query: ({ visitId = "0" }) => ({
