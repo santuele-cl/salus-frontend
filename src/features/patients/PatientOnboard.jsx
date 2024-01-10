@@ -116,9 +116,9 @@ const PatientTest = () => {
                       {/* </div> */}
                     </Modal.Body>
                   </Modal>
-                  {/* <PatientChart
+                  <PatientChart
                     patientChartId={patient["patientChart"]["id"]}
-                  /> */}
+                  />
                 </>
               )}
             </div>
