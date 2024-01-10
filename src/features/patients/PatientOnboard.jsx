@@ -154,7 +154,7 @@ const PatientTest = () => {
           </div>
         </div>
       </div>
-      {isSuccess && patient && (
+      {/* {isSuccess && patient && (
         <LabOrderForm
           setShowLabOrderForm={setShowLabOrderForm}
           showLabOrderForm={showLabOrderForm}
@@ -162,7 +162,7 @@ const PatientTest = () => {
             patient && isSuccess ? patient["patientChart"]["id"] : "0"
           }
         />
-      )}
+      )} */}
       <Modal
         show={showPatientForm}
         size="5xl"
