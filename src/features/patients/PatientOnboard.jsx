@@ -30,7 +30,7 @@ const PatientTest = () => {
     trigger,
     { data: patient, isSuccess, isLoading, isFetching, isError, error },
   ] = useLazyGetPatientByIdQuery();
-
+  console.log(patient);
   const onPatientSearch = async () => {
     if (patientId) {
       try {
@@ -140,7 +140,7 @@ const PatientTest = () => {
                 </div>
               </div>
               <div className="w-full overflow-scroll">
-                {/* {(isFetching || isLoading) && <SpinnerFlexible />}
+                {(isFetching || isLoading) && <SpinnerFlexible />}
                 {isError && <ErrorFlexible err={error} />}
                 {isSuccess && patient && (
                   <LabOrderTable
@@ -148,13 +148,13 @@ const PatientTest = () => {
                       patient && isSuccess ? patient["patientChart"]["id"] : "0"
                     }
                   />
-                )} */}
+                )}
               </div>
             </div>
           </div>
         </div>
       </div>
-      {/* {isSuccess && patient && (
+      {isSuccess && patient && (
         <LabOrderForm
           setShowLabOrderForm={setShowLabOrderForm}
           showLabOrderForm={showLabOrderForm}
@@ -162,7 +162,7 @@ const PatientTest = () => {
             patient && isSuccess ? patient["patientChart"]["id"] : "0"
           }
         />
-      )} */}
+      )}
       <Modal
         show={showPatientForm}
         size="5xl"
