@@ -17,91 +17,88 @@ const LabOrderTable = ({ patientChartId }) => {
   const [showPreview, setShowPreview] = useState(false);
   const [activePrev, setActivePrev] = useState("");
 
-  const { data: laborders } =
-    useGetLabOrdersByPatientChartIdQuery(patientChartId);
+  const {
+    data: laborders,
+    isSuccess,
+    isFetching,
+  } = useGetLabOrdersByPatientChartIdQuery(patientChartId);
   // console.log("updateLabOrderId", updateLabOrderId);
 
   return (
     <>
       <Table striped>
         <Table.Head>
-          {laborderTableHeaders.map(({ name }) => {
-            return (
-              <>
-                <Table.HeadCell>{name}</Table.HeadCell>
-              </>
-            );
-          })}
+          {patientChartId !== "0" &&
+            isSuccess &&
+            laborders &&
+            laborders.length > 0 &&
+            laborderTableHeaders.map(({ name }, i) => {
+              return <Table.HeadCell key={name + i}>{name}</Table.HeadCell>;
+            })}
           <Table.HeadCell>Action</Table.HeadCell>
         </Table.Head>
         <Table.Body>
-          {laborders &&
-            laborders?.length > 0 &&
-            laborders.map((laborder) => (
-              <>
-                <Table.Row>
-                  {laborderTableHeaders.map(({ id }) => {
-                    if (id === "requestingPhysician") {
-                      const { userProfile } = laborder[id];
-                      const { fname, mname, lname } = userProfile;
-                      return (
-                        <>
-                          <Table.Cell>{`${fname} ${mname} ${lname}, MD`}</Table.Cell>
-                        </>
-                      );
-                    } else if (id === "LabProcedure") {
-                      const { procedureName } = laborder[id];
-                      return (
-                        <>
-                          <Table.Cell>{`${procedureName}`}</Table.Cell>
-                        </>
-                      );
-                    } else if (id === "result") {
-                      const result = laborder[id];
-                      return (
-                        <>
-                          <Table.Cell>
-                            <div className="grid grid-cols-1">
-                              <div>
-                                {result ? (
-                                  <img
-                                    src={result}
-                                    onClick={() => {
-                                      setActivePrev(result);
-                                      setShowPreview(true);
-                                    }}
-                                    className="cursor-pointer"
-                                  />
-                                ) : (
-                                  "No Data"
-                                )}
-                              </div>
-                            </div>
-                          </Table.Cell>
-                        </>
-                      );
-                    }
+          {patientChartId !== "0" &&
+            isSuccess &&
+            laborders &&
+            laborders.length > 0 &&
+            laborders.map((laborder, i) => (
+              <Table.Row key={i}>
+                {laborderTableHeaders.map(({ id }, i) => {
+                  if (id === "requestingPhysician") {
+                    const { userProfile } = laborder[id];
+                    const { fname, mname, lname } = userProfile;
                     return (
-                      <>
-                        <Table.Cell>
-                          {laborder[id] ? laborder[id] : "No Data"}
-                        </Table.Cell>
-                      </>
+                      <Table.Cell
+                        key={id + i}
+                      >{`${fname} ${mname} ${lname}, MD`}</Table.Cell>
                     );
-                  })}
-                  <Table.Cell>
-                    <Button
-                      onClick={() => {
-                        setOpenModal(true), setUpdateLabOrderId(laborder["id"]);
-                      }}
-                    >
-                      Upload
-                    </Button>
-                  </Table.Cell>
-                </Table.Row>
-              </>
+                  } else if (id === "LabProcedure") {
+                    const { procedureName } = laborder[id];
+                    return (
+                      <Table.Cell key={id + i}>{`${procedureName}`}</Table.Cell>
+                    );
+                  } else if (id === "result") {
+                    const result = laborder[id];
+                    return (
+                      <Table.Cell key={id + i}>
+                        <div className="grid grid-cols-1">
+                          <div>
+                            {result ? (
+                              <img
+                                src={result}
+                                onClick={() => {
+                                  setActivePrev(result);
+                                  setShowPreview(true);
+                                }}
+                                className="cursor-pointer"
+                              />
+                            ) : (
+                              "No Data"
+                            )}
+                          </div>
+                        </div>
+                      </Table.Cell>
+                    );
+                  }
+                  return (
+                    <Table.Cell key={id + i}>
+                      {laborder[id] ? laborder[id] : "No Data"}
+                    </Table.Cell>
+                  );
+                })}
+                <Table.Cell>
+                  <Button
+                    onClick={() => {
+                      setOpenModal(true), setUpdateLabOrderId(laborder["id"]);
+                    }}
+                  >
+                    Upload
+                  </Button>
+                </Table.Cell>
+              </Table.Row>
             ))}
-          {(!laborders || laborders.length < 1) && (
+          {(isFetching || !laborders || laborders.length < 1) && (
             <Table.Row>
               <Table.Cell>No Data</Table.Cell>
               <Table.Cell>No Data</Table.Cell>

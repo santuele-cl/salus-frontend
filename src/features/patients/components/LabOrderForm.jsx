@@ -77,9 +77,9 @@ const LabOrderForm = ({
                 onChange={(e) => setActiveCategory(e.target.value)}
               >
                 {categories.map(({ categoryName }) => (
-                  <>
-                    <option value={categoryName}>{categoryName}</option>
-                  </>
+                  <option value={categoryName} key={categoryName}>
+                    {categoryName}
+                  </option>
                 ))}
               </Select>
             </div>
@@ -93,13 +93,11 @@ const LabOrderForm = ({
                   .filter(
                     ({ categoryName }) => categoryName === activeCategory
                   )[0]
-                  .labProcedure.map((proc) => {
+                  .labProcedure.map((proc, i) => {
                     return (
-                      <>
-                        <option value={proc["id"]}>
-                          {proc["procedureName"]}
-                        </option>
-                      </>
+                      <option value={proc["id"]} key={proc + i}>
+                        {proc["procedureName"]}
+                      </option>
                     );
                   })}
 

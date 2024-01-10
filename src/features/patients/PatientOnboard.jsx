@@ -145,7 +145,7 @@ const PatientTest = () => {
                 {isSuccess && patient && (
                   <LabOrderTable
                     patientChartId={
-                      patient ? patient["patientChart"]["id"] : "0"
+                      patient && isSuccess ? patient["patientChart"]["id"] : "0"
                     }
                   />
                 )}
@@ -157,7 +157,9 @@ const PatientTest = () => {
       <LabOrderForm
         setShowLabOrderForm={setShowLabOrderForm}
         showLabOrderForm={showLabOrderForm}
-        patientChartId={patient ? patient["patientChart"]["id"] : "0"}
+        patientChartId={
+          patient && isSuccess ? patient["patientChart"]["id"] : "0"
+        }
       />
       <Modal
         show={showPatientForm}
