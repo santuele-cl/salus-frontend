@@ -5,7 +5,7 @@ import { useGetLabOrdersByPatientChartIdQuery } from "../../laborders/labOrdersA
 
 const laborderTableHeaders = [
   { name: "ID", id: "id" },
-  { name: "Procedure", id: "LabProcedure" },
+  { name: "Procedure", id: "labProcedure" },
   { name: "Requesting Physician", id: "requestingPhysician" },
   { name: "Result", id: "result" },
 ];
@@ -48,7 +48,7 @@ const LabOrderTable = ({ patientChartId }) => {
                         key={id + i}
                       >{`${fname} ${mname} ${lname}, MD`}</Table.Cell>
                     );
-                  } else if (id === "LabProcedure") {
+                  } else if (id === "labProcedure") {
                     const { procedureName } = laborder[id];
                     return (
                       <Table.Cell key={id + i}>{`${procedureName}`}</Table.Cell>
