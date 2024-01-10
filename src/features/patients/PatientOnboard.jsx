@@ -30,7 +30,7 @@ const PatientTest = () => {
     trigger,
     { data: patient, isSuccess, isLoading, isFetching, isError, error },
   ] = useLazyGetPatientByIdQuery();
-  console.log(patient);
+  console.log("patient", patient);
   const onPatientSearch = async () => {
     if (patientId) {
       try {
@@ -116,9 +116,9 @@ const PatientTest = () => {
                       {/* </div> */}
                     </Modal.Body>
                   </Modal>
-                  <PatientChart
+                  {/* <PatientChart
                     patientChartId={patient["patientChart"]["id"]}
-                  />
+                  /> */}
                 </>
               )}
             </div>
